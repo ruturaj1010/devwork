@@ -21,13 +21,11 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // hide / show navbar
       if (Math.abs(currentScrollY - lastScrollY) > 10) {
         setShow(currentScrollY < lastScrollY);
         setLastScrollY(currentScrollY);
       }
 
-      // active section detection
       sections.forEach((id) => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -60,7 +58,7 @@ const Navbar = () => {
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="sm:min-w-3xl min-w-sm h-[7vh] mx-4 my-3 text-lg font-medium flex justify-evenly items-center px-4 py-2 bg-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-md rounded-lg opacity-90">
+      <div className="w-full max-w-3xl mx-4 my-3 text-lg font-medium flex justify-evenly items-center px-4 py-2 bg-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-md rounded-lg opacity-90">
         <div onClick={() => scrollTo("home")} className={linkClass("home")}>
           Home
         </div>
