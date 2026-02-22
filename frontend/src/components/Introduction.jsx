@@ -1,20 +1,49 @@
 import React from "react";
+import Particles from "../partials/Particles";
+import BlurText from "../partials/BlurText";
 
 const Introduction = () => {
+  const handleAnimationComplete = () => {
+    console.log("Animation completed!");
+  };
   return (
-    <div id="home" className="w-full h-full md:flex items-center bg-amber-400 sm:min-h-screen px-6 py-24 md:px-16">
+    <div
+      id="home"
+      className="w-full h-full md:flex items-center relative sm:min-h-screen px-6 py-46 md:px-16"
+    >
+      <div className="w-full h-full absolute left-0 top-0">
+        <Particles
+          particleColors={["#ffffff"]}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover
+          alphaParticles={false}
+          disableRotation={false}
+          pixelRatio={1}
+        />
+      </div>
+
       <div className="max-w-4xl mx-auto flex flex-col-reverse md:flex-row justify-center items-center gap-10">
         <div className="w-full md:w-3/5 flex flex-col justify-center gap-4 text-center md:text-left">
-          <p className="text-purple-400 font-medium tracking-wide">
+          <p className="text-zinc-100 text-2xl font-semibold tracking-wide">
             Hi there, I'm
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold text-zinc-700 leading-tight">
-            Ruturaj Nikam
-          </h1>
-          <h2 className="text-xl md:text-3xl font-semibold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+          <div className="flex justify-center sm:justify-start items-center">
+            <BlurText
+              text="Ruturaj Nikam"
+              delay={200}
+              animateBy="words"
+              direction="top"
+              onAnimationComplete={handleAnimationComplete}
+              className="text-3xl md:text-5xl font-bold text-zinc-100 leading-tight"
+            />
+          </div>
+          <h2 className="text-xl md:text-3xl font-semibold text-cyan-200 bg-clip-text ">
             Full-Stack Developer
           </h2>
-          <p className="text-zinc-500 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
+          <p className="text-zinc-200 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
             I build clean, scalable, and user-focused web applications by
             transforming ideas into performant digital products. Passionate
             about thoughtful UX, efficient architecture, and real-world impact.
@@ -22,7 +51,7 @@ const Introduction = () => {
         </div>
 
         <div className="w-full md:w-2/5 flex justify-center">
-          <div className="w-56 h-56 md:w-72 md:h-72 rounded-full p-2 bg-amber-200 shadow-xl shadow-amber-400/50">
+          <div className="w-56 h-56 md:w-72 md:h-72 rounded-full bg-sky-200 p-1 shadow-lg shadow-sky-300/50 z-20">
             <img
               className="w-full h-full rounded-full object-cover"
               src="Home.png"

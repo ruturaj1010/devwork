@@ -47,18 +47,18 @@ const Navbar = () => {
   const linkClass = (id) =>
     `cursor-pointer transition ${
       active === id
-        ? "text-purple-600 font-semibold"
-        : "text-gray-700 hover:text-purple-500"
+        ? "text-sky-600 font-semibold"
+        : "text-gray-900 hover:text-sky-600"
     }`;
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full flex justify-center z-50 
-      transition-transform duration-300 ${
+      className={`fixed left-0 w-full flex justify-center z-50 
+      transition-transform duration-300 mt-2 ${
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full max-w-3xl mx-4 my-3 text-lg font-medium flex justify-evenly items-center px-4 py-2 bg-white/70 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-md rounded-lg opacity-90">
+      <div className="w-full max-w-3xl mx-4 my-3 text-xl font-medium flex justify-evenly items-center px-4 py-2 bg-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.22)] backdrop-blur-md rounded-lg opacity-60">
         <div onClick={() => scrollTo("home")} className={linkClass("home")}>
           Home
         </div>
