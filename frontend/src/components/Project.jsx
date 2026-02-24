@@ -9,47 +9,36 @@ const Project = () => {
   const projects = [
     {
       id: 1,
-      src: "https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58",
-      alt: "Project Alpha",
-      caption: "Project Alpha",
-      title: "Project Alpha",
+      src: "uberProj.png",
+      alt: "Uber like Ride-Sharing App",
+      caption: "Uber like Ride-Sharing App",
+      title: "Uber like Ride-Sharing App",
       description: "A full-stack web app with real-time features.",
-      tags: ["React", "Node.js", "Socket.io"],
-      githubUrl: "https://github.com/yourusername/project-alpha",
+      tags: ["React", "Node.js", "Socket.io", "TailwindCSS", "MongoDB"],
+      githubUrl: "https://github.com/ruturaj1010/UberClone",
       liveUrl: "https://project-alpha.vercel.app",
     },
     {
       id: 2,
-      src: "https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58",
-      alt: "Project Beta",
-      caption: "Project Beta",
-      title: "Project Beta",
-      description: "An AI-powered dashboard for analytics.",
-      tags: ["Python", "FastAPI", "TailwindCSS"],
-      githubUrl: "https://github.com/yourusername/project-beta",
-      liveUrl: null, // no live link — button won't render
+      src: "movieMore.png",
+      alt: "Movies+More",
+      caption: "Movies+More",
+      title: "Movies+More",
+      description: "An interactive movie database with search and filter capabilities.",
+      tags: ["Reactjs", "redux", "TailwindCSS", "REST API"],
+      githubUrl: "https://github.com/ruturaj1010/MovieWebsiteFront-end",
+      liveUrl: "https://movie-website-front-end.vercel.app/",
     },
     {
       id: 3,
-      src: "https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58",
-      alt: "Project Gamma",
-      caption: "Project Gamma",
-      title: "Project Gamma",
-      description: "Mobile-first e-commerce storefront.",
-      tags: ["Next.js", "Stripe", "MongoDB"],
-      githubUrl: null, // private repo — button won't render
-      liveUrl: "https://project-gamma.vercel.app",
-    },
-    {
-      id: 4,
-      src: "https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58",
-      alt: "Project Delta",
-      caption: "Project Delta",
-      title: "Project Delta",
-      description: "CLI tool for automating deployments.",
-      tags: ["Go", "Docker", "CI/CD"],
-      githubUrl: "https://github.com/yourusername/project-delta",
-      liveUrl: null,
+      src: "refokus.png",
+      alt: "refokus",
+      caption: "refokus",
+      title: "refokus",
+      description: "A creative work showcasing front-end skills and design sensibilities.",
+      tags: ["React.js", "TailwindCSS", "Framer Motion"],
+      githubUrl: "https://github.com/ruturaj1010/Refokuss-Clone-ReactJs",
+      liveUrl: "https://refokuss-clone-react-js.vercel.app/",
     },
   ];
 
@@ -98,7 +87,7 @@ const Project = () => {
                 showTooltip
                 displayOverlayContent
                 overlayContent={
-                  <p className="tilted-card-demo-text ml-5 mt-3">
+                  <p className="tilted-card-demo-text bg-gray-200 rounded-lg px-2 ml-5 mt-3">
                     {proj.title}
                   </p>
                 }

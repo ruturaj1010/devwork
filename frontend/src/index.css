@@ -6,7 +6,8 @@ html, body {
 
 * {
   box-sizing: border-box;
-  font-family: "Share Tech", sans-serif;
-  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 427;
   font-style: normal;
 }

@@ -18,7 +18,7 @@ const Introduction = () => {
               delay={200}
               animateBy="words"
               direction="top"
-              className="text-3xl md:text-5xl font-bold text-zinc-100 leading-tight"
+              className="text-3xl md:text-5xl font-bold text-zinc-100 leading-tight tracking-wider"
             />
           </div>
           <h2 className="text-xl md:text-3xl font-semibold text-cyan-200 bg-clip-text ">
