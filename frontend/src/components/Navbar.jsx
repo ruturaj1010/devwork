@@ -6,12 +6,6 @@ const Navbar = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [active, setActive] = useState("home");
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
-    setTheme((t) => (t === "light" ? "dark" : "light"));
-    document.documentElement.classList.toggle("dark");
-  };
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -86,17 +80,6 @@ const Navbar = () => {
           className={linkClass("contact")}
         >
           Contact
-        </div>
-
-        <div
-          className="text-2xl cursor-pointer -rotate-12"
-          onClick={toggleTheme}
-        >
-          {theme === "light" ? (
-            <i className="fa-solid fa-moon"></i>
-          ) : (
-            <i className="fa-regular fa-moon"></i>
-          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 const contactModel = require('../models/contactModel');
 
-
 module.exports.sendMessage = async (req, res) => {
     try {
         const { name, email, message } = req.body;
@@ -20,5 +19,6 @@ module.exports.sendMessage = async (req, res) => {
         res.status(200).json({ message: "Message sent successfully!" })
     } catch (error) {
         console.log(error.message);
+        res.status(500).json({ message: "Internal server error" });
     }
 }

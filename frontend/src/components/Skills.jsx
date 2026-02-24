@@ -27,20 +27,7 @@ const Skills = () => {
   ];
 
   return (
-    <div id="skills" className="w-full h-full md:min-h-screen relative">
-      <div className="w-full h-full absolute left-0 top-0">
-        <Particles
-          particleColors={["#ffffff"]}
-          particleCount={200}
-          particleSpread={10}
-          speed={0.1}
-          particleBaseSize={100}
-          moveParticlesOnHover
-          alphaParticles={false}
-          disableRotation={false}
-          pixelRatio={1}
-        />
-      </div>
+    <div id="skills" className="w-full h-full md:min-h-[90vh] relative">
 
       <h3 className="text-3xl font-bold text-white text-center py-16">
         SKILLS
