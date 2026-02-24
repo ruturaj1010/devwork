@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require("express");
 const connectDB = require('./db/db');
+const contactRoute = require('./routes/contactRoute');
 
 const app = express();
 const cors = require("cors");
@@ -16,6 +17,8 @@ connectDB();
 app.get("/", (req, res)=>{
     res.send("Heyy from backend")
 })
+
+app.use("/contact", contactRoute);
 
 app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}`)
