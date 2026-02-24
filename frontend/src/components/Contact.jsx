@@ -38,7 +38,7 @@ const Contact = () => {
         <div className="w-full flex justify-start items-center">
           <form
             onSubmit={handleSubmit}
-            className="w-full sm:w-2/3 p-4 sm:p-12 rounded-xl bg-gray-200/40 mx-auto flex flex-col items-center sm:items-start gap-4"
+            className="w-full md:w-2/3 p-4 sm:p-12 rounded-xl text-white bg-neutral-200/50 mx-auto flex flex-col items-center sm:items-start gap-4"
           >
             <input
               type="text"
@@ -46,7 +46,7 @@ const Contact = () => {
               placeholder="Your name"
               value={form.name}
               onChange={handleChange}
-              className="w-full sm:w-2/3 py-2 px-3 border-2 outline-none border-gray-700 rounded"
+              className="w-full sm:w-2/3 py-2 px-3 border-2 outline-none placeholder:text-gray-100 border-gray-300 rounded"
             />
 
             <input
@@ -55,7 +55,7 @@ const Contact = () => {
               placeholder="Your email"
               value={form.email}
               onChange={handleChange}
-              className="w-full sm:w-2/3 py-2 px-3 border-2 outline-none border-gray-700 rounded"
+              className="w-full sm:w-2/3 py-2 px-3 border-2 outline-none placeholder:text-gray-100 border-gray-300 rounded"
             />
 
             <textarea
@@ -64,7 +64,7 @@ const Contact = () => {
               placeholder="Your message"
               value={form.message}
               onChange={handleChange}
-              className="w-full sm:w-full py-2 px-3 border-2 resize-none outline-none border-gray-700 rounded"
+              className="w-full sm:w-full py-2 px-3 border-2 resize-none outline-none placeholder:text-gray-100 border-gray-300 rounded"
             />
 
             <button

@@ -42,6 +42,7 @@ function App() {
         </div>
 
         <div className="w-full h-full relative mx-auto flex flex-col justify-center items-center z-30 ">
+          
           <div className="w-full h-full absolute left-0 top-0">
             <Particles
               particleColors={["#aca8e6"]}
@@ -55,7 +56,7 @@ function App() {
               pixelRatio={1}
             />
           </div>
-          
+
           <div className="w-full h-full z-40">
             <Introduction />
             <Skills />
