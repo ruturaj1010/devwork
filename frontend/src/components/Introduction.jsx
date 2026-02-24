@@ -3,9 +3,6 @@ import Particles from "../partials/Particles";
 import BlurText from "../partials/BlurText";
 
 const Introduction = () => {
-  const handleAnimationComplete = () => {
-    console.log("Animation completed!");
-  };
   return (
     <div
       id="home"
@@ -26,7 +23,7 @@ const Introduction = () => {
       </div>
 
       <div className="max-w-4xl mx-auto flex flex-col-reverse md:flex-row justify-center items-center gap-10">
-        <div className="w-full md:w-3/5 flex flex-col justify-center gap-4 text-center md:text-left">
+        <div className="w-full md:w-3/5 flex flex-col justify-center gap-2 text-center md:text-left">
           <p className="text-zinc-100 text-2xl font-semibold tracking-wide">
             Hi there, I'm
           </p>
@@ -36,24 +33,24 @@ const Introduction = () => {
               delay={200}
               animateBy="words"
               direction="top"
-              onAnimationComplete={handleAnimationComplete}
               className="text-3xl md:text-5xl font-bold text-zinc-100 leading-tight"
             />
           </div>
           <h2 className="text-xl md:text-3xl font-semibold text-cyan-200 bg-clip-text ">
             Full-Stack Developer
           </h2>
-          <p className="text-zinc-200 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
-            I build clean, scalable, and user-focused web applications by
-            transforming ideas into performant digital products. Passionate
-            about thoughtful UX, efficient architecture, and real-world impact.
+          <h5 className="text-zinc-300 text-base font-medium md:text-lg leading-relaxed max-w-xl mt-5 mx-auto md:mx-0">
+            Clean code. Thoughtful UX. Real impact
+          </h5>
+          <p className="text-zinc-300 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
+            Building performant web applications with thoughtful UX and clean architecture.
           </p>
         </div>
 
         <div className="w-full md:w-2/5 flex justify-center">
           <div className="w-56 h-56 md:w-72 md:h-72 rounded-full bg-sky-200 p-1 shadow-lg shadow-sky-300/50 z-20">
             <img
-              className="w-full h-full rounded-full object-cover"
+              className="w-full h-full rounded-full object-cover pointer-events-none select-none"
               src="Home.png"
               alt="Ruturaj Nikam profile photo"
             />
