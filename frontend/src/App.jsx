@@ -11,7 +11,7 @@ import LightRays from "./partials/LightRays";
 import Particles from "./partials/Particles";
 
 function App() {
-  document.title = "Ruturaj Nikam - Portfolio";
+  document.title = "You're welcome";
 
   useEffect(() => {
     const scroll = new LocomotiveScroll();
@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full h-full bg-zinc-800">
+    <div className="w-full h-full bg-zinc-900">
       <Navbar />
 
       <div className="w-full max-w-6xl h-full mx-auto">

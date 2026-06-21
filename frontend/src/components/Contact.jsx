@@ -3,7 +3,12 @@ import axios from "axios";
 import Footer from "./Footer";
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    message: "",
+  });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,7 +24,7 @@ const Contact = () => {
       if (response.status === 200) {
         console.log(response);
         alert(response.data.message);
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", mobile: "", message: "" });
       } else {
         alert("Failed to send message. Please try again later.");
       }
@@ -32,13 +37,13 @@ const Contact = () => {
     <div id="contact" className="w-full h-full relative">
       <div className="w-full p-3">
         <h1 className="text-3xl font-bold text-white text-center pt-3 pb-6">
-          CONTACT ME
+          Get in Touch
         </h1>
 
-        <div className="w-full flex justify-start items-center">
+        <div className="w-full flex justify-start items-center ">
           <form
             onSubmit={handleSubmit}
-            className="w-full md:w-2/3 p-4 sm:p-12 rounded-xl text-white bg-neutral-200/50 mx-auto flex flex-col items-center sm:items-start gap-4"
+            className="w-full md:w-2/3 p-4 sm:p-12 rounded-xl text-white bg-gray-100 mx-auto flex flex-col items-center sm:items-start gap-4"
           >
             <input
               type="text"
@@ -54,6 +59,15 @@ const Contact = () => {
               name="email"
               placeholder="Your email"
               value={form.email}
+              onChange={handleChange}
+              className="w-full sm:w-2/3 py-2 px-3 border-2 outline-none placeholder:text-gray-100 border-gray-300 rounded"
+            />
+
+            <input
+              type="tel"
+              name="mobile"
+              placeholder="Your mobile number"
+              value={form.mobile}
               onChange={handleChange}
               className="w-full sm:w-2/3 py-2 px-3 border-2 outline-none placeholder:text-gray-100 border-gray-300 rounded"
             />

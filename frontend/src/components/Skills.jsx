@@ -17,7 +17,7 @@ const Skills = () => {
     { name: "Python", icon: "python" },
     { name: "C", icon: "c" },
     { name: "MySQL", icon: "mysql" },
-    { name: "Redis", icon: "redis" },
+    { name: "Typescript", icon: "typescript" },
     { name: "Bootstrap", icon: "bootstrap" },
     { name: "Linux", icon: "linux" },
     { name: "Postman", icon: "postman" },

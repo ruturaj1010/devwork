@@ -24,6 +24,15 @@ const Introduction = () => {
           <h2 className="text-xl md:text-3xl font-semibold text-cyan-200 bg-clip-text ">
             Full-Stack Developer
           </h2>
+          <div className="w-28 px-3 py-1 border-2 rounded-2xl flex justify-center lg:justify-start items-center gap-4 mt-6 text-red-300 font-semibold">
+            <a
+              href="/Ruturaj_Nikam_8600598191.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Resume
+            </a>
+          </div>
           <h5 className="text-zinc-300 text-base font-medium md:text-lg leading-relaxed max-w-xl mt-5 mx-auto md:mx-0">
             Clean code. Thoughtful UX. Real impact
           </h5>

@@ -42,7 +42,7 @@ const Navbar = () => {
     `cursor-pointer transition ${
       active === id
         ? "text-sky-600 font-semibold"
-        : "text-gray-900 hover:text-sky-600"
+        : "text-stone-100 hover:text-sky-600"
     }`;
 
   return (
@@ -52,7 +52,7 @@ const Navbar = () => {
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full max-w-3xl mx-4 my-3 text-xl font-medium flex justify-evenly items-center px-4 py-2 bg-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.22)] backdrop-blur-md rounded-lg opacity-60">
+      <div className="w-full max-w-3xl mx-4 my-3 text-xl font-medium flex justify-evenly items-center px-4 py-2 bg-gray-950 shadow-[0_8px_30px_rgba(0,0,0,0.22)] backdrop-blur-md rounded-lg bg-gray-950/60">
         <div onClick={() => scrollTo("home")} className={linkClass("home")}>
           Home
         </div>
