@@ -52,7 +52,7 @@ const Navbar = () => {
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="w-full max-w-3xl mx-4 my-3 text-xl font-medium flex justify-evenly items-center px-4 py-2 bg-gray-950 shadow-[0_8px_30px_rgba(0,0,0,0.22)] backdrop-blur-md rounded-lg bg-gray-950/60">
+      <div className="w-full max-w-3xl mx-4 my-3 text-xl font-thin flex justify-evenly items-center px-4 py-2 bg-gray-950 shadow-[0_8px_30px_rgba(0,0,0,0.22)] backdrop-blur-md rounded-lg ">
         <div onClick={() => scrollTo("home")} className={linkClass("home")}>
           Home
         </div>
