@@ -43,7 +43,7 @@ const Contact = () => {
         <div className="w-full flex justify-start items-center ">
           <form
             onSubmit={handleSubmit}
-            className="w-full md:w-2/3 p-4 sm:p-12 rounded-xl text-white bg-gray-100 mx-auto flex flex-col items-center sm:items-start gap-4"
+            className="w-full md:w-2/3 p-4 sm:p-12 rounded-xl text-white bg-zinc-800 mx-auto flex flex-col items-center sm:items-start gap-4"
           >
             <input
               type="text"

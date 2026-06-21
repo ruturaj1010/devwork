@@ -64,12 +64,12 @@ const WorkExp = () => {
                   </p>
 
                   <div className="flex flex-wrap items-center gap-3 mt-2 mb-3">
-                    <span className="flex items-center gap-1 text-[11px] font-mono text-white/50 border border-white/10 rounded px-2 py-0.5 bg-zinc-100">
+                    <span className="flex items-center gap-1 text-[11px] font-mono text-white/50 border border-white/10 rounded px-2 py-0.5 bg-zinc-800">
                       <Calendar size={11} />
                       {exp.date}
                     </span>
                     {exp.location == "" ? null : (
-                      <span className="flex items-center gap-1 text-[11px] font-mono text-white/50 border border-white/10 rounded px-2 py-0.5 bg-zinc-100">
+                      <span className="flex items-center gap-1 text-[11px] font-mono text-white/50 border border-white/10 rounded px-2 py-0.5 bg-zinc-800">
                         <MapPin size={11} />
                         {exp.location}
                       </span>
