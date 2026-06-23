@@ -10,10 +10,8 @@ const Introduction = () => {
     >
       <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-        {/* LEFT SIDE: Info & Actions */}
         <div className="lg:col-span-7 flex flex-col items-start text-left gap-5 z-40">
 
-          {/* Status Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium tracking-wide">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
