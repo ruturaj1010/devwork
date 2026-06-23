@@ -2,15 +2,14 @@ import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Introduction from "./components/Introduction";
 import Skills from "./components/Skills";
-import Footer from "./components/Footer";
+import GithubContributions from "./components/GithubContributions";
 import Project from "./components/Project";
 import WorkExp from "./components/WorkExp";
 import Contact from "./components/Contact";
 import LocomotiveScroll from "locomotive-scroll";
-import Particles from "./partials/Particles";
 
 function App() {
-  document.title = "You're welcome";
+  document.title = "Ruturaj Nikam | Full Stack Developer Portfolio";
 
   useEffect(() => {
     const scroll = new LocomotiveScroll();
@@ -18,34 +17,17 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full h-full bg-zinc-900">
+    <div className="w-full h-full bg-transparent overflow-x-hidden text-zinc-100">
       <Navbar />
 
-      <div className="w-full max-w-6xl h-full mx-auto">
-
-        <div className="w-full h-full relative mx-auto flex flex-col justify-center items-center z-30 ">
-          
-          <div className="w-full h-full absolute left-0 top-0">
-            <Particles
-              particleColors={["#aca8e6"]}
-              particleCount={1000}
-              particleSpread={10}
-              speed={0.2}
-              particleBaseSize={100}
-              moveParticlesOnHover
-              alphaParticles={false}
-              disableRotation={false}
-              pixelRatio={1}
-            />
-          </div>
-
-          <div className="w-full h-full z-40">
-            <Introduction />
-            <Skills />
-            <Project />
-            <WorkExp />
-            <Contact />
-          </div>
+      <div className="w-full max-w-6xl h-full mx-auto relative px-4">
+        <div className="w-full h-full z-40 relative flex flex-col gap-10">
+          <Introduction />
+          <Skills />
+          <GithubContributions />
+          <Project />
+          <WorkExp />
+          <Contact />
         </div>
       </div>
     </div>
