@@ -11,7 +11,7 @@ const Project = () => {
       description: "A full-stack web application replicating core Uber functionalities. Features real-time driver tracking, interactive route visualization, and JWT-based authentication. Developed using React, Node.js, Socket.io, TailwindCSS, and MongoDB.",
       tags: ["React", "Node.js", "Socket.io", "TailwindCSS", "MongoDB"],
       githubUrl: "https://github.com/ruturaj1010/UberClone",
-      liveUrl: "https://project-alpha.vercel.app",
+      liveUrl: "https://uber-clone-peach-omega.vercel.app/",
       featured: true,
     },
     {
