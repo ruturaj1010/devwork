@@ -1,6 +1,7 @@
 import React from "react";
 import BlurText from "../partials/BlurText";
 import { Github, Linkedin, FileText } from "lucide-react";
+import { SiLeetcode } from "react-icons/si";
 
 const Introduction = () => {
   return (
@@ -83,6 +84,15 @@ const Introduction = () => {
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin size={20} />
+              </a>
+              <a
+                href="https://leetcode.com/u/rutu_10/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-violet-400 hover:text-violet-400 text-zinc-300 transition-all duration-200"
+                aria-label="LeetCode Profile"
+              >
+                <SiLeetcode size={20} />
               </a>
             </div>
           </div>

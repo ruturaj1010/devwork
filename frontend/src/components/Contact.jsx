@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Copy, Check, ArrowUpRight, Github, Linkedin } from "lucide-react";
+import { SiLeetcode } from "react-icons/si";
 import Footer from "./Footer";
 
 const Contact = () => {
@@ -61,7 +62,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mt-8">
+        <div className="flex items-center gap-4 mt-8 flex-wrap justify-center">
           <a
             href="https://www.linkedin.com/in/ruturaj-nikam-10oc101028ru"
             target="_blank"
@@ -80,6 +81,16 @@ const Contact = () => {
           >
             <Github size={13} />
             <span>GitHub</span>
+          </a>
+          <span className="text-zinc-700 text-xs font-mono">•</span>
+          <a
+            href="https://leetcode.com/u/rutu_10/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-zinc-400 hover:text-violet-400 transition-colors duration-200 text-xs font-mono"
+          >
+            <SiLeetcode size={13} />
+            <span>LeetCode</span>
           </a>
           <span className="text-zinc-700 text-xs font-mono">•</span>
           <a
