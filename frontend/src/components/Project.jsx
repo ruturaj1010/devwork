@@ -36,6 +36,27 @@ const Project = () => {
       liveUrl: "https://refokuss-clone-react-js.vercel.app/",
       featured: true,
     },
+    {
+      id: 4,
+      src: "/sakshiparlour.png",
+      alt: "Sakshi Ladies Beauty Parlour",
+      title: "Sakshi Ladies Beauty Parlour",
+      description: "Modern responsive beauty parlour website showcasing salon services, bridal offerings, and customer-focused beauty solutions.",
+      tags: ["React.js", "TailwindCSS", "Vite"],
+      liveUrl: "https://www.sakshiparlor.codingcell.me/",
+      featured: false,
+    },
+    {
+      id: 5,
+      src: "/leaveease.png",
+      alt: "EaseLeave Employee Leave Management System",
+      title: "EaseLeave — Employee Leave Management System",
+      description: "Full-stack employee leave management platform with role-based access, leave applications, approvals, analytics, profile management, and secure cloud-based file storage.",
+      tags: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS", "JWT", "Cloudinary"],
+      githubUrl: "https://github.com/ruturaj1010/EmailLeaveSystem",
+      liveUrl: "https://www.easeleave.codingcell.me/",
+      featured: false,
+    },
   ];
 
   return (
