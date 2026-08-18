@@ -89,8 +89,8 @@ const Skills = () => {
   ];
 
   return (
-    <div id="skills" className="w-full min-h-screen py-20 px-6 flex flex-col justify-center">
-      <div className="max-w-5xl mx-auto w-full z-40">
+    <div id="skills" className="w-full">
+      <div className="w-full">
         
         <div className="flex flex-col items-start gap-2 mb-12">
           <span className="text-violet-400 font-mono text-sm tracking-widest uppercase">Expertise</span>

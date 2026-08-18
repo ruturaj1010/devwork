@@ -97,8 +97,8 @@ const GithubContributions = () => {
   }, []);
 
   return (
-    <div id="github" className="w-full py-16 px-6 relative z-40">
-      <div className="max-w-5xl mx-auto w-full">
+    <div id="github" className="w-full">
+      <div className="w-full">
         <div className="flex flex-col items-start gap-2 mb-10">
           <span className="text-violet-400 font-mono text-sm tracking-widest uppercase">Open Source</span>
           <h3 className="text-3xl md:text-4xl font-bold text-white tracking-wide">

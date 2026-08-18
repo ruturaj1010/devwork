@@ -1,27 +1,69 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 const sections = ["home", "skills", "projects", "experience", "contact"];
 
 const Navbar = () => {
-  const [show, setShow] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [active, setActive] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
 
+  const lastScrollY = useRef(0);
+  const hiddenAtScrollY = useRef(0);
+  const isProgrammaticScroll = useRef(false);
+
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    isProgrammaticScroll.current = true;
+    hiddenAtScrollY.current = window.scrollY;
+
     setIsOpen(false);
+    setIsNavbarVisible(false);
+
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    setTimeout(() => {
+      isProgrammaticScroll.current = false;
+      lastScrollY.current = window.scrollY;
+      hiddenAtScrollY.current = window.scrollY;
+    }, 800);
   };
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (Math.abs(currentScrollY - lastScrollY) > 10) {
-        setShow(currentScrollY < lastScrollY || currentScrollY < 50);
-        setLastScrollY(currentScrollY);
+      if (currentScrollY <= 10) {
+        setIsNavbarVisible(true);
+        lastScrollY.current = currentScrollY;
+        hiddenAtScrollY.current = currentScrollY;
+        return;
       }
+
+      if (isProgrammaticScroll.current) {
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      const revealDistance = window.innerHeight * 0.1;
+
+      if (!isNavbarVisible) {
+        const distanceFromHiddenPosition = Math.abs(
+          currentScrollY - hiddenAtScrollY.current
+        );
+
+        if (distanceFromHiddenPosition >= revealDistance) {
+          setIsNavbarVisible(true);
+          hiddenAtScrollY.current = currentScrollY;
+        }
+      }
+
+      lastScrollY.current = currentScrollY;
 
       sections.forEach((id) => {
         const el = document.getElementById(id);
@@ -30,16 +72,25 @@ const Navbar = () => {
         const offsetTop = el.offsetTop - 140;
         const offsetBottom = offsetTop + el.offsetHeight;
 
-        if (currentScrollY >= offsetTop && currentScrollY < offsetBottom) {
-          setActive(id);
+        if (
+          currentScrollY >= offsetTop &&
+          currentScrollY < offsetBottom
+        ) {
+          setActive((prev) => (prev === id ? prev : id));
         }
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+    lastScrollY.current = window.scrollY;
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isNavbarVisible]);
 
   const linkClass = (id) =>
     `cursor-pointer transition-all duration-200 capitalize font-medium ${
@@ -48,17 +99,21 @@ const Navbar = () => {
         : "text-zinc-300 hover:text-violet-400"
     }`;
 
+  const visibleState = isOpen || isNavbarVisible;
+
   return (
     <>
       <div
-        className={`fixed left-0 w-full flex justify-center z-50 
-        transition-transform duration-300 mt-2 ${
-          show ? "translate-y-0" : "-translate-y-full"
+        className={`fixed left-0 w-full flex justify-center z-[60]
+        transition-all duration-300 ease-out mt-2 ${
+          visibleState
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
         <div className="w-full max-w-5xl mx-4 my-3 flex justify-between items-center px-6 py-3 bg-zinc-950/80 shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-md border border-white/5 rounded-xl">
-          <div 
-            onClick={() => scrollTo("home")} 
+          <div
+            onClick={() => scrollTo("home")}
             className="text-lg font-bold text-zinc-100 hover:text-violet-400 cursor-pointer font-mono tracking-wider flex items-center gap-1.5 transition-colors"
           >
             <span className="text-violet-400">&lt;</span>
@@ -89,19 +144,24 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 md:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] transition-opacity duration-300 md:hidden ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
       />
 
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-zinc-950/95 border-l border-white/10 z-50 p-6 flex flex-col gap-8 transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 h-full w-64 bg-zinc-950/95 border-l border-white/10 z-[80] p-6 flex flex-col gap-8 transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-between items-center">
-          <span className="text-zinc-400 font-mono text-sm">Navigation</span>
+          <span className="text-zinc-400 font-mono text-sm">
+            Navigation
+          </span>
+
           <button
             onClick={() => setIsOpen(false)}
             className="text-zinc-100 hover:text-violet-400 focus:outline-none transition-colors"
@@ -116,7 +176,9 @@ const Navbar = () => {
             <div
               key={sec}
               onClick={() => scrollTo(sec)}
-              className={`${linkClass(sec)} text-left border-b border-white/5 pb-2`}
+              className={`${linkClass(
+                sec
+              )} text-left border-b border-white/5 pb-2`}
             >
               {sec}
             </div>

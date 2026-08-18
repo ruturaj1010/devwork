@@ -21,10 +21,16 @@ function App() {
       <Navbar />
 
       <div className="w-full max-w-6xl h-full mx-auto relative px-4">
-        <div className="w-full h-full z-40 relative flex flex-col gap-10">
+        <div className="w-full h-full z-40 relative flex flex-col gap-6 md:gap-8">
           <Introduction />
-          <Skills />
-          <GithubContributions />
+          
+          <div className="w-full py-8 md:py-12 relative z-40">
+            <div className="max-w-5xl mx-auto w-full flex flex-col gap-10 md:gap-12">
+              <Skills />
+              <GithubContributions />
+            </div>
+          </div>
+
           <Project />
           <WorkExp />
           <Contact />
