@@ -32,7 +32,7 @@ const Project = () => {
       src: "/sakshiparlour.png",
       characterSrc: "/sakshi-parlour-character.svg",
       alt: "Sakshi Ladies Beauty Parlour",
-      title: "Sakshi Ladies Beauty Parlour",
+      title: "Easy Bussiness Management",
       description:
         "Full-stack beauty parlour platform featuring salon services, bridal offerings, customer interactions, and responsive appointment-focused experiences.",
       tags: [
@@ -152,11 +152,10 @@ const Project = () => {
                         onClick={() => setActiveProjectIndex(index)}
                         aria-current={isActive ? "true" : undefined}
                         aria-label={`View ${project.title}`}
-                        className={`flex items-center justify-between gap-3 px-4 py-3 rounded-xl border text-left font-mono transition-all duration-200 w-full cursor-pointer ${
-                          isActive
+                        className={`flex items-center justify-between gap-3 px-4 py-3 rounded-xl border text-left font-mono transition-all duration-200 w-full cursor-pointer ${isActive
                             ? "bg-violet-950/50 border-violet-500/40 text-violet-300 shadow-md shadow-violet-950/40"
                             : "bg-zinc-900/60 border-white/5 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60 hover:border-white/10"
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <span className={`text-xs font-bold ${isActive ? "text-violet-400" : "text-zinc-500"}`}>
@@ -179,7 +178,7 @@ const Project = () => {
 
             {/* Right Side: Active Project Display (with comfortable spacing from sidebar) */}
             <div className="lg:col-span-8 flex flex-col gap-5 w-full items-start text-left lg:pl-4">
-              
+
               {/* Mobile-only Mascot */}
               {currentProject.characterSrc && (
                 <div className="flex justify-center lg:hidden my-1 pointer-events-none w-full">
@@ -215,7 +214,7 @@ const Project = () => {
 
               {/* Active Project Info */}
               <div key={`info-${currentProject.id}`} className="flex flex-col gap-3.5 items-start text-left w-full max-w-[660px]">
-                
+
                 {/* Project Title Line with Action Buttons aligned to the right margin */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full">
                   <h4 className="text-xl md:text-2xl font-bold text-zinc-100 hover:text-violet-400 transition-colors">
