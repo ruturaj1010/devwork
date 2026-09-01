@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Copy, Check, ArrowUpRight, Github, Linkedin } from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
-import Footer from "./Footer";
 
 const Contact = () => {
   const [copied, setCopied] = useState(false);
@@ -111,11 +110,6 @@ const Contact = () => {
           <Check size={16} className="text-emerald-400" />
           <span>Email copied!</span>
         </div>
-
-      </div>
-
-      <div className="w-full mt-16">
-        <Footer />
       </div>
     </div>
   );
