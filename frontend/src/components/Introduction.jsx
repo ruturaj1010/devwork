@@ -41,13 +41,19 @@ const Introduction = () => {
               Full-Stack Developer
             </h2>
             <div className="text-zinc-400 text-xs md:text-sm font-mono flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">React</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">React.js</span>
               <span className="text-zinc-600">•</span>
               <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Node.js</span>
               <span className="text-zinc-600">•</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Spring Boot</span>
+              <span className="text-zinc-600">•</span>
               <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Java</span>
               <span className="text-zinc-600">•</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">REST APIs</span>
+              <span className="text-zinc-600">•</span>
               <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">MongoDB</span>
+              <span className="text-zinc-600">•</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">PostgreSQL</span>
             </div>
           </div>
 
@@ -57,7 +63,7 @@ const Introduction = () => {
 
           <div className="flex flex-wrap items-center gap-4 mt-4">
             <a
-              href="/Ruturaj_Nikam_8600598191.pdf"
+              href="/RuturajNikamCV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-violet-500 hover:bg-violet-600 text-zinc-950 font-bold rounded-lg transition-all duration-200 shadow-lg shadow-violet-500/20 text-sm font-mono tracking-wide"

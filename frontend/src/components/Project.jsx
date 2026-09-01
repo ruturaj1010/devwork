@@ -8,6 +8,27 @@ const Project = () => {
   const projects = [
     {
       id: 1,
+      characterSrc: "/careerlink-character.svg",
+      alt: "CareerLink Full-Stack Job Portal",
+      title: "CareerLink — Full-Stack Job Portal",
+      description:
+        "Production-deployed full-stack job portal connecting candidates and employers through role-based authentication, job discovery, applications, recruitment workflows, candidate management, and analytics.",
+      tags: [
+        "React.js",
+        "Spring Boot",
+        "Spring Security",
+        "PostgreSQL",
+        "REST API",
+        "Docker",
+        "TailwindCSS",
+        "Vercel",
+        "Render",
+      ],
+      liveUrl: "https://careerlinkjobportal.vercel.app/",
+      githubUrl: "https://github.com/ruturaj1010/Job_System",
+    },
+    {
+      id: 2,
       src: "/leaveease.png",
       characterSrc: "/easeleave-character.svg",
       alt: "EaseLeave Employee Leave Management System",
@@ -28,7 +49,7 @@ const Project = () => {
       liveUrl: "https://www.easeleave.codingcell.me/",
     },
     {
-      id: 2,
+      id: 3,
       src: "/uberProj.png",
       alt: "Zovia Real-Time Ride-Sharing Platform",
       title: "Zovia — Real-Time Ride-Sharing Platform",
@@ -49,7 +70,7 @@ const Project = () => {
       liveUrl: "https://zovia-smarter-journeys.vercel.app/",
     },
     {
-      id: 3,
+      id: 4,
       src: "/sakshiparlour.png",
       characterSrc: "/sakshi-parlour-character.svg",
       alt: "Sakshi Ladies Beauty Parlour",
@@ -68,7 +89,7 @@ const Project = () => {
       liveUrl: "https://www.sakshiparlor.codingcell.me/",
     },
     {
-      id: 4,
+      id: 5,
       src: "/movieMore.png",
       characterSrc: "/movies-character.svg",
       alt: "Movies+More",
@@ -89,7 +110,7 @@ const Project = () => {
         "https://movie-website-front-end.vercel.app/",
     },
     {
-      id: 5,
+      id: 6,
       src: "/refokus.png",
       characterSrc: "/refokus-character.svg",
       alt: "Refokus Clone",
@@ -202,12 +223,21 @@ const Project = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
-                      key={currentProject.id}
-                      src={currentProject.src}
-                      alt={currentProject.alt}
-                      className="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-[1.02] filter saturate-[0.95] group-hover:saturate-100"
-                    />
+                    {currentProject.src ? (
+                      <img
+                        key={currentProject.id}
+                        src={currentProject.src}
+                        alt={currentProject.alt}
+                        className="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-[1.02] filter saturate-[0.95] group-hover:saturate-100"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-850 to-zinc-900 text-zinc-400 p-6 text-center select-none group-hover:scale-[1.01] transition-transform duration-300">
+                        <span className="text-base font-bold text-zinc-200 font-mono tracking-wide">{currentProject.title.split(" — ")[0]}</span>
+                        <span className="text-xs font-mono text-violet-400 mt-2 flex items-center gap-1">
+                          View Live Deployment <ExternalLink size={12} />
+                        </span>
+                      </div>
+                    )}
                   </a>
                 </div>
               </div>
