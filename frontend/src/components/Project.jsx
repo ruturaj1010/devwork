@@ -8,6 +8,7 @@ const Project = () => {
   const projects = [
     {
       id: 1,
+      src: "/careerlink.png",
       characterSrc: "/careerlink-character.svg",
       alt: "CareerLink Full-Stack Job Portal",
       title: "CareerLink — Full-Stack Job Portal",
