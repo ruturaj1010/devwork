@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
-const sections = ["home", "skills", "projects", "experience", "contact"];
+const sections = ["home", "projects", "skills", "experience", "contact"];
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);

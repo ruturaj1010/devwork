@@ -38,27 +38,27 @@ const Introduction = () => {
 
           <div className="flex flex-col gap-3">
             <h2 className="text-2xl md:text-3xl font-semibold text-violet-400 tracking-wide font-mono">
-              Full-Stack Developer
+              Java Full Stack Developer
             </h2>
             <div className="text-zinc-400 text-xs md:text-sm font-mono flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">React.js</span>
-              <span className="text-zinc-600">•</span>
-              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Node.js</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Java</span>
               <span className="text-zinc-600">•</span>
               <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Spring Boot</span>
               <span className="text-zinc-600">•</span>
-              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Java</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">React</span>
+              <span className="text-zinc-600">•</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">PostgreSQL</span>
               <span className="text-zinc-600">•</span>
               <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">REST APIs</span>
               <span className="text-zinc-600">•</span>
-              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">MongoDB</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">Node.js</span>
               <span className="text-zinc-600">•</span>
-              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">PostgreSQL</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800/80 border border-white/5 text-violet-300">MongoDB</span>
             </div>
           </div>
 
           <p className="text-zinc-300 text-base md:text-lg leading-relaxed max-w-xl mt-2">
-            Building performant web applications with thoughtful UX, scalable server-side systems, and clean architecture. Focused on solving real-world challenges with high-impact software.
+            Java Full Stack Developer building scalable, high-performance web applications with Java, Spring Boot, React, and PostgreSQL. Focused on clean architecture, robust APIs, and thoughtful user experiences.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mt-4">
