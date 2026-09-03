@@ -28,7 +28,7 @@ const WorkExp = () => {
   ];
 
   return (
-    <div id="experience" className="w-full py-20 px-6 relative z-40">
+    <div id="experience" className="w-full py-20 px-6 relative z-40 scroll-mt-24">
       <div className="max-w-4xl mx-auto w-full">
         
         <div className="flex flex-col items-start gap-2 mb-16">

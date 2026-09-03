@@ -14,7 +14,11 @@ function App() {
   useEffect(() => {
     document.title = "Ruturaj Nikam | Java Full Stack Developer Portfolio";
     const scroll = new LocomotiveScroll();
-    return () => scroll.destroy();
+    window.locomotiveScroll = scroll;
+    return () => {
+      window.locomotiveScroll = null;
+      scroll.destroy();
+    };
   }, []);
 
   return (

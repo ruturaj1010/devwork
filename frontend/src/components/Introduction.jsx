@@ -1,13 +1,13 @@
 import React from "react";
 import BlurText from "../partials/BlurText";
-import { Github, Linkedin, FileText } from "lucide-react";
-import { SiLeetcode } from "react-icons/si";
+import { FileText } from "lucide-react";
+import { SiGithub, SiLinkedin, SiLeetcode, SiX } from "react-icons/si";
 
 const Introduction = () => {
   return (
     <div
       id="home"
-      className="w-full min-h-screen flex items-center px-6 py-20 lg:py-0"
+      className="w-full min-h-screen flex items-center px-6 py-20 lg:py-0 scroll-mt-24"
     >
       <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
@@ -77,28 +77,37 @@ const Introduction = () => {
                 href="https://github.com/ruturaj1010"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-violet-400 hover:text-violet-400 text-zinc-300 transition-all duration-200"
+                className="group p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-zinc-500 hover:bg-zinc-700/80 text-zinc-100 transition-all duration-200"
                 aria-label="GitHub Profile"
               >
-                <Github size={20} />
+                <SiGithub size={18} className="transition-colors duration-200 group-hover:text-white" />
               </a>
               <a
-                href="https://www.linkedin.com/in/ruturaj-nikam-10oc101028ru"
+                href="https://www.linkedin.com/in/ruturajnikam"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-violet-400 hover:text-violet-400 text-zinc-300 transition-all duration-200"
+                className="group p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-[#0a66c2]/50 hover:shadow-[0_0_12px_rgba(10,102,194,0.3)] transition-all duration-200"
                 aria-label="LinkedIn Profile"
               >
-                <Linkedin size={20} />
+                <SiLinkedin size={18} className="text-[#0a66c2] transition-colors duration-200 group-hover:text-[#258cfb]" />
               </a>
               <a
                 href="https://leetcode.com/u/rutu_10/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-violet-400 hover:text-violet-400 text-zinc-300 transition-all duration-200"
+                className="group p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-[#ffa116]/50 hover:shadow-[0_0_12px_rgba(255,161,22,0.3)] transition-all duration-200"
                 aria-label="LeetCode Profile"
               >
-                <SiLeetcode size={20} />
+                <SiLeetcode size={18} className="text-[#ffa116] transition-colors duration-200 group-hover:text-[#ffb74d]" />
+              </a>
+              <a
+                href="https://x.com/thecodingcell"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-2.5 rounded-lg bg-zinc-800 border border-white/10 hover:border-zinc-500 hover:bg-zinc-700/80 transition-all duration-200"
+                aria-label="X Profile"
+              >
+                <SiX size={18} className="text-zinc-200 transition-colors duration-200 group-hover:text-white" />
               </a>
             </div>
           </div>

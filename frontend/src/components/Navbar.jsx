@@ -9,88 +9,101 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const lastScrollY = useRef(0);
-  const hiddenAtScrollY = useRef(0);
-  const isProgrammaticScroll = useRef(false);
+  const isManualClick = useRef(false);
+  const scrollTimeoutRef = useRef(null);
+
+  // Helper to determine active section based on current viewport position
+  const getActiveSection = () => {
+    // If at the very top of the page
+    if (window.scrollY < 80) return "home";
+
+    // If at the very bottom of the page
+    const scrollBottom = window.innerHeight + window.scrollY;
+    if (scrollBottom >= document.documentElement.scrollHeight - 60) {
+      return "contact";
+    }
+
+    // Check sections from bottom to top; active section is the lowest one whose top has reached the navbar threshold
+    const navThreshold = 180;
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const id = sections[i];
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= navThreshold) {
+        return id;
+      }
+    }
+
+    return "home";
+  };
 
   const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    isProgrammaticScroll.current = true;
-    hiddenAtScrollY.current = window.scrollY;
-
+    isManualClick.current = true;
+    setActive(id);
     setIsOpen(false);
-    setIsNavbarVisible(false);
+    setIsNavbarVisible(true);
 
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    if (window.locomotiveScroll) {
+      window.locomotiveScroll.scrollTo(`#${id}`, {
+        offset: -96,
+        duration: 1.2,
+      });
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
 
-    setTimeout(() => {
-      isProgrammaticScroll.current = false;
-      lastScrollY.current = window.scrollY;
-      hiddenAtScrollY.current = window.scrollY;
-    }, 800);
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    scrollTimeoutRef.current = setTimeout(() => {
+      isManualClick.current = false;
+      const current = getActiveSection();
+      setActive(current);
+    }, 1200);
   };
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY <= 10) {
+      // When user clicks a nav link, active state is locked until smooth scroll finishes
+      if (!isManualClick.current) {
+        const current = getActiveSection();
+        setActive(current);
+      }
+
+      // Show/hide navbar based on scroll direction
+      if (currentScrollY <= 50) {
         setIsNavbarVisible(true);
-        lastScrollY.current = currentScrollY;
-        hiddenAtScrollY.current = currentScrollY;
-        return;
-      }
-
-      if (isProgrammaticScroll.current) {
-        lastScrollY.current = currentScrollY;
-        return;
-      }
-
-      const revealDistance = window.innerHeight * 0.1;
-
-      if (!isNavbarVisible) {
-        const distanceFromHiddenPosition = Math.abs(
-          currentScrollY - hiddenAtScrollY.current
-        );
-
-        if (distanceFromHiddenPosition >= revealDistance) {
+      } else {
+        const diff = currentScrollY - lastScrollY.current;
+        if (diff > 12 && currentScrollY > 120) {
+          setIsNavbarVisible(false);
+        } else if (diff < -8) {
           setIsNavbarVisible(true);
-          hiddenAtScrollY.current = currentScrollY;
         }
       }
 
       lastScrollY.current = currentScrollY;
-
-      sections.forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-
-        const offsetTop = el.offsetTop - 140;
-        const offsetBottom = offsetTop + el.offsetHeight;
-
-        if (
-          currentScrollY >= offsetTop &&
-          currentScrollY < offsetBottom
-        ) {
-          setActive((prev) => (prev === id ? prev : id));
-        }
-      });
     };
 
     lastScrollY.current = window.scrollY;
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isNavbarVisible]);
+  }, []);
 
   const linkClass = (id) =>
     `cursor-pointer transition-all duration-200 capitalize font-medium ${

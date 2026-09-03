@@ -52,6 +52,7 @@ const Project = () => {
     {
       id: 3,
       src: "/uberProj.png",
+      characterSrc: "/zovia-character.svg",
       alt: "Zovia Real-Time Ride-Sharing Platform",
       title: "Zovia — Real-Time Ride-Sharing Platform",
       description:
@@ -135,7 +136,7 @@ const Project = () => {
   const currentProject = projects[activeProjectIndex];
 
   return (
-    <div id="projects" className="w-full py-12 md:py-16 px-6 relative z-40">
+    <div id="projects" className="w-full py-12 md:py-16 px-6 relative z-40 scroll-mt-24">
       <div className="max-w-5xl mx-auto w-full">
         <SectionHeading
           category="My Works"

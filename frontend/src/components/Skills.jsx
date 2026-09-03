@@ -82,7 +82,7 @@ const Skills = () => {
   ];
 
   return (
-    <div id="skills" className="w-full">
+    <div id="skills" className="w-full scroll-mt-24">
       <div className="w-full">
         
         <div className="flex flex-col items-start gap-2 mb-12">

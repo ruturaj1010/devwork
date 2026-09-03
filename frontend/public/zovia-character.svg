@@ -1,0 +1,176 @@
+<svg id="zovia-character" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="800" viewBox="0 0 1000 800">
+  <defs>
+    <linearGradient id="zv-grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6c63ff" />
+    </linearGradient>
+    <linearGradient id="zv-grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3f3d56" />
+      <stop offset="100%" stop-color="#242238" />
+    </linearGradient>
+    <linearGradient id="zv-screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="zv-soft-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop Blobs (Matching unDraw style) -->
+  <path d="M450,120 C620,90 820,140 890,270 C960,400 930,560 840,660 C750,760 550,790 390,760 C230,730 110,630 90,490 C70,350 280,150 450,120 Z" fill="#6c63ff" opacity="0.08" />
+  <circle cx="180" cy="190" r="35" fill="#6c63ff" opacity="0.06" />
+  <circle cx="880" cy="180" r="28" fill="#6c63ff" opacity="0.06" />
+  <ellipse cx="500" cy="740" rx="380" ry="22" fill="#6c63ff" opacity="0.12" />
+
+  <!-- Modern Ride-Sharing Car (Left-Center) -->
+  <g id="rideshare-vehicle" filter="url(#zv-soft-shadow)">
+    <!-- Car shadow -->
+    <ellipse cx="360" cy="690" rx="240" ry="16" fill="#1e1b4b" opacity="0.25" />
+
+    <!-- Car Body Lower Chassis -->
+    <path d="M 140,620 Q 150,560 210,550 L 510,540 Q 560,545 580,590 L 590,640 Q 590,660 560,665 L 170,665 Q 140,660 140,620 Z" fill="#2f2e41" />
+
+    <!-- Car Cabin Roof & Glass -->
+    <path d="M 230,550 L 290,450 Q 310,430 350,430 L 460,430 Q 490,430 515,465 L 555,545 Z" fill="#3f3d56" />
+    <!-- Front Windshield -->
+    <path d="M 465,442 L 505,470 L 535,535 L 475,538 L 450,442 Z" fill="#7cfcff" opacity="0.7" />
+    <!-- Side Windows -->
+    <path d="M 315,445 L 440,445 L 440,535 L 295,535 Z" fill="#6c63ff" opacity="0.35" />
+    <path d="M 245,535 L 295,455 L 295,535 Z" fill="#7cfcff" opacity="0.5" />
+
+    <!-- Car Body Accent Stripe (Zovia Purple) -->
+    <path d="M 145,610 Q 320,595 585,595 L 587,612 Q 320,612 143,628 Z" fill="url(#zv-grad-purple)" />
+
+    <!-- Headlight (Cyan / Neon) -->
+    <path d="M 575,600 Q 588,605 588,620 L 570,625 Z" fill="#7cfcff" />
+    <polygon points="588,605 700,580 720,640 588,625" fill="#7cfcff" opacity="0.08" />
+
+    <!-- Taillight (Red LED Strip) -->
+    <path d="M 142,605 Q 140,618 152,618 L 155,605 Z" fill="#fa5959" />
+
+    <!-- Wheels -->
+    <!-- Rear Wheel -->
+    <g id="wheel-rear">
+      <circle cx="230" cy="660" r="48" fill="#1e1b2e" />
+      <circle cx="230" cy="660" r="34" fill="#3f3d56" />
+      <circle cx="230" cy="660" r="16" fill="url(#zv-grad-purple)" />
+      <circle cx="230" cy="660" r="6" fill="#ffffff" />
+    </g>
+    <!-- Front Wheel -->
+    <g id="wheel-front">
+      <circle cx="490" cy="660" r="48" fill="#1e1b2e" />
+      <circle cx="490" cy="660" r="34" fill="#3f3d56" />
+      <circle cx="490" cy="660" r="16" fill="url(#zv-grad-purple)" />
+      <circle cx="490" cy="660" r="6" fill="#ffffff" />
+    </g>
+
+    <!-- Top GPS Beacon / Antenna on Car -->
+    <rect x="375" y="418" width="22" height="12" rx="4" fill="url(#zv-grad-purple)" />
+    <circle cx="386" cy="415" r="4" fill="#7cfcff" />
+  </g>
+
+  <!-- Route Navigation Path (Connecting Car to Driver's App) -->
+  <path d="M 490,560 C 530,500 580,480 640,490 C 670,495 680,510 700,470" fill="none" stroke="#6c63ff" stroke-width="4" stroke-dasharray="8 6" opacity="0.6" />
+  <circle cx="580" cy="495" r="5" fill="#7cfcff" />
+  <circle cx="645" cy="490" r="5" fill="#8b5cf6" />
+
+  <!-- Floating Smartphone with Live Route Map -->
+  <g id="phone-display" transform="translate(680, 240)" filter="url(#zv-soft-shadow)">
+    <!-- Phone Outer Shell -->
+    <rect x="0" y="0" width="170" height="270" rx="24" fill="#242238" stroke="#3f3d56" stroke-width="3" />
+    <!-- Screen -->
+    <rect x="8" y="10" width="154" height="250" rx="18" fill="url(#zv-screen-grad)" />
+    <!-- Top Speaker Notch -->
+    <rect x="55" y="14" width="60" height="5" rx="2.5" fill="#3f3d56" />
+
+    <!-- Map Grid Lines inside Phone Screen -->
+    <path d="M 12,80 L 158,80 M 12,140 L 158,140 M 12,200 L 158,200" stroke="#3f3d56" stroke-width="1" opacity="0.4" />
+    <path d="M 50,20 L 50,250 M 100,20 L 100,250" stroke="#3f3d56" stroke-width="1" opacity="0.4" />
+
+    <!-- Real-time Navigation Route inside Phone Screen -->
+    <path d="M 35,210 Q 55,170 85,150 T 130,85" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" />
+    <circle cx="35" cy="210" r="6" fill="#7cfcff" />
+    
+    <!-- GPS Destination Pin -->
+    <g transform="translate(130, 85)">
+      <ellipse cx="0" cy="4" rx="6" ry="2" fill="#000" opacity="0.3" />
+      <path d="M 0, -18 C -9,-18 -12,-9 0, 4 C 12,-9 9,-18 0,-18 Z" fill="#fa5959" />
+      <circle cx="0" cy="-11" r="4" fill="#ffffff" />
+    </g>
+
+    <!-- ETA Badge on Screen -->
+    <rect x="25" y="32" width="120" height="28" rx="8" fill="#2f2e41" stroke="#6c63ff" stroke-width="1" />
+    <circle cx="40" cy="46" r="4" fill="#10b981" />
+    <rect x="52" y="41" width="55" height="4" rx="2" fill="#ffffff" opacity="0.8" />
+    <rect x="52" y="48" width="35" height="3" rx="1.5" fill="#7cfcff" />
+  </g>
+
+  <!-- Driver / Modern Mobility Character (Right) -->
+  <g id="driver-character" filter="url(#zv-soft-shadow)">
+    <!-- Character Shadow -->
+    <ellipse cx="690" cy="745" rx="75" ry="14" fill="#1e1b4b" opacity="0.3" />
+
+    <!-- Legs & Stylish Dark Trousers -->
+    <!-- Left Leg -->
+    <path d="M 645,520 L 640,680 Q 640,715 630,730 L 670,735 Q 675,700 670,530 Z" fill="#242238" />
+    <!-- Right Leg -->
+    <path d="M 675,520 L 685,680 Q 690,715 705,730 L 740,725 Q 720,690 705,520 Z" fill="#2f2e41" />
+
+    <!-- Modern Sneakers -->
+    <!-- Left Shoe -->
+    <path d="M 615,732 Q 625,720 645,722 L 670,728 Q 672,740 660,742 L 620,742 Q 612,740 615,732 Z" fill="#ffffff" />
+    <path d="M 620,736 L 665,736" stroke="#6c63ff" stroke-width="3" stroke-linecap="round" />
+    <!-- Right Shoe -->
+    <path d="M 695,725 Q 710,715 730,718 L 755,724 Q 757,738 745,740 L 700,738 Q 692,735 695,725 Z" fill="#ffffff" />
+    <path d="M 702,732 L 748,732" stroke="#6c63ff" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Torso / Jacket -->
+    <!-- Inner Shirt (Violet accent) -->
+    <path d="M 640,360 Q 675,370 710,360 L 715,530 Q 675,540 635,530 Z" fill="url(#zv-grad-purple)" />
+    <!-- Zovia Mobility Jacket / Outerwear -->
+    <path d="M 630,350 L 610,480 Q 635,525 655,530 L 658,400 Q 645,370 630,350 Z" fill="#2f2e41" />
+    <path d="M 720,350 L 740,470 Q 720,525 695,530 L 692,400 Q 705,370 720,350 Z" fill="#3f3d56" />
+
+    <!-- Left Arm & Hand (Relaxed by side) -->
+    <path d="M 630,355 Q 600,430 605,510 L 625,510 Q 620,440 645,370 Z" fill="#2f2e41" />
+    <circle cx="612" cy="522" r="14" fill="#ee8e9e" />
+
+    <!-- Right Arm & Hand (Interacting with / holding Phone) -->
+    <path d="M 720,360 Q 755,410 740,480 L 720,475 Q 735,420 705,370 Z" fill="#3f3d56" />
+    <!-- Forearm pointing to the phone -->
+    <path d="M 725,465 Q 745,450 780,440 L 785,458 Q 745,475 720,482 Z" fill="#3f3d56" />
+    <circle cx="790" cy="445" r="12" fill="#ee8e9e" />
+
+    <!-- Neck -->
+    <rect x="662" y="315" width="26" height="40" rx="8" fill="#ee8e9e" />
+
+    <!-- Head & Face -->
+    <ellipse cx="675" cy="275" rx="34" ry="42" fill="#ee8e9e" />
+    <!-- Confident Modern Sunglasses / Tech Shades -->
+    <path d="M 650,265 Q 665,263 675,268 Q 685,263 700,265 L 702,280 Q 685,292 675,282 Q 665,292 648,280 Z" fill="#242238" />
+    <line x1="645" y1="270" x2="650" y2="268" stroke="#242238" stroke-width="3" />
+    <line x1="700" y1="268" x2="706" y2="270" stroke="#242238" stroke-width="3" />
+    <!-- Glasses Reflection Tint -->
+    <path d="M 654,269 L 664,281" stroke="#7cfcff" stroke-width="2" stroke-linecap="round" opacity="0.8" />
+    <path d="M 684,269 L 694,281" stroke="#7cfcff" stroke-width="2" stroke-linecap="round" opacity="0.8" />
+
+    <!-- Friendly Smile -->
+    <path d="M 664,298 Q 675,306 686,298" fill="none" stroke="#3f3d56" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Modern Stylish Hair -->
+    <path d="M 640,265 Q 636,220 670,218 Q 715,215 715,250 Q 712,230 690,230 Q 665,232 648,252 Z" fill="#242238" />
+    <!-- Ear -->
+    <circle cx="642" cy="275" r="7" fill="#ee8e9e" />
+
+    <!-- Floating Location Indicator / Pin Badge near head -->
+    <g transform="translate(620, 190)">
+      <circle cx="0" cy="0" r="16" fill="url(#zv-grad-purple)" />
+      <path d="M 0, -8 C -4,-8 -6,-3 0, 6 C 6,-3 4,-8 0,-8 Z" fill="#ffffff" />
+      <circle cx="0" cy="-4" r="2" fill="#6c63ff" />
+      <!-- Pulsing Signal Rings -->
+      <circle cx="0" cy="0" r="24" fill="none" stroke="#6c63ff" stroke-width="1.5" opacity="0.4" />
+      <circle cx="0" cy="0" r="32" fill="none" stroke="#6c63ff" stroke-width="1" opacity="0.2" />
+    </g>
+  </g>
+</svg>

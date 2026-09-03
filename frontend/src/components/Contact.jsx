@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Mail, Copy, Check, ArrowUpRight, Github, Linkedin } from "lucide-react";
-import { SiLeetcode } from "react-icons/si";
+import { Mail, Copy, Check, ArrowUpRight } from "lucide-react";
+import { SiGithub, SiLinkedin, SiLeetcode, SiX } from "react-icons/si";
 
 const Contact = () => {
   const [copied, setCopied] = useState(false);
@@ -17,9 +17,9 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact" className="w-full py-20 px-6 relative z-40 flex flex-col justify-between min-h-[65vh]">
+    <div id="contact" className="w-full py-20 px-6 relative z-40 flex flex-col justify-between min-h-[65vh] scroll-mt-24">
       <div className="max-w-3xl mx-auto w-full flex flex-col items-center justify-center flex-grow text-center">
-        
+
         <span className="text-violet-400 font-mono text-xs tracking-[0.2em] uppercase mb-4">
           Get in Touch
         </span>
@@ -63,12 +63,12 @@ const Contact = () => {
 
         <div className="flex items-center gap-4 mt-8 flex-wrap justify-center">
           <a
-            href="https://www.linkedin.com/in/ruturaj-nikam-10oc101028ru"
+            href="https://www.linkedin.com/in/ruturajnikam"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-zinc-400 hover:text-violet-400 transition-colors duration-200 text-xs font-mono"
+            className="group flex items-center gap-1.5 text-zinc-300 hover:text-[#258cfb] transition-colors duration-200 text-xs font-mono"
           >
-            <Linkedin size={13} />
+            <SiLinkedin size={13} className="text-[#0a66c2] group-hover:text-[#258cfb] transition-colors duration-200" />
             <span>LinkedIn</span>
           </a>
           <span className="text-zinc-700 text-xs font-mono">•</span>
@@ -76,9 +76,9 @@ const Contact = () => {
             href="https://github.com/ruturaj1010"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-zinc-400 hover:text-violet-400 transition-colors duration-200 text-xs font-mono"
+            className="group flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors duration-200 text-xs font-mono"
           >
-            <Github size={13} />
+            <SiGithub size={13} className="text-zinc-100 group-hover:text-white transition-colors duration-200" />
             <span>GitHub</span>
           </a>
           <span className="text-zinc-700 text-xs font-mono">•</span>
@@ -86,21 +86,19 @@ const Contact = () => {
             href="https://leetcode.com/u/rutu_10/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-zinc-400 hover:text-violet-400 transition-colors duration-200 text-xs font-mono"
+            className="group flex items-center gap-1.5 text-zinc-300 hover:text-[#ffb74d] transition-colors duration-200 text-xs font-mono"
           >
-            <SiLeetcode size={13} />
+            <SiLeetcode size={13} className="text-[#ffa116] group-hover:text-[#ffb74d] transition-colors duration-200" />
             <span>LeetCode</span>
           </a>
           <span className="text-zinc-700 text-xs font-mono">•</span>
           <a
-            href="https://x.com/TheCodingCell01"
+            href="https://x.com/thecodingcell"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-zinc-400 hover:text-violet-400 transition-colors duration-200 text-xs font-mono"
+            className="group flex items-center gap-1.5 text-zinc-300 hover:text-white transition-colors duration-200 text-xs font-mono"
           >
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
+            <SiX size={13} className="text-zinc-100 group-hover:text-white transition-colors duration-200" />
             <span>X</span>
           </a>
         </div>
