@@ -201,15 +201,9 @@ const GithubContributions = () => {
             <div className="flex items-center gap-2 mr-1">
               <Github className="text-violet-400 text-lg shrink-0" />
 
-              <div className="flex flex-col">
-                <h4 className="text-base md:text-lg font-bold text-white font-mono tracking-wide leading-none">
-                  GITHUB
-                </h4>
-
-                <span className="text-[10px] font-mono text-zinc-400 mt-1">
-                  Open Source & Repositories
-                </span>
-              </div>
+              <h4 className="text-base md:text-xl font-bold text-white font-mono tracking-wide leading-none">
+                GITHUB
+              </h4>
             </div>
 
             {/* Mobile View Profile Button */}
@@ -275,9 +269,8 @@ const GithubContributions = () => {
 
         {/* Content Layout: Heatmap (Left) + GitHub Badges (Right) */}
         <div
-          className={`grid grid-cols-1 ${
-            badges && badges.length > 0 ? "lg:grid-cols-[auto_1fr]" : "grid-cols-1"
-          } gap-3.5 items-stretch`}
+          className={`grid grid-cols-1 ${badges && badges.length > 0 ? "lg:grid-cols-[auto_1fr]" : "grid-cols-1"
+            } gap-3.5 items-stretch`}
         >
           {/* Left: 365-day Contribution Heatmap */}
           <div className="flex flex-col gap-2 min-w-0">

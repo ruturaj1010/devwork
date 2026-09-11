@@ -416,204 +416,200 @@ const LeetcodeContributions = () => {
             <div className="flex items-center gap-2 mr-1">
               <SiLeetcode className="text-amber-400 text-lg shrink-0" />
 
-              <div className="flex flex-col">
-                <h4 className="text-base md:text-lg font-bold text-white font-mono tracking-wide leading-none">
-                  LEETCODE
-                </h4>
+              <h4 className="text-base md:text-xl font-bold text-white font-mono tracking-wide leading-none">
+                LEETCODE
+              </h4>
 
-                <span className="text-[10px] font-mono text-zinc-400 mt-1">
-                  Problem Solving & DSA
-                </span>
-              </div>
-            </div>
-
-            <a
-              href={LEETCODE_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 border border-white/10 hover:border-amber-400/40 rounded-lg text-xs font-mono tracking-wider transition-all duration-200 shadow-sm"
-            >
-              <span>View Profile</span>
-              <ExternalLink size={12} />
-            </a>
           </div>
 
-          {stats && (
-            <div className="justify-self-center flex flex-wrap items-center justify-start lg:justify-center gap-2 w-full lg:w-auto">
+          <a
+            href={LEETCODE_PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 border border-white/10 hover:border-amber-400/40 rounded-lg text-xs font-mono tracking-wider transition-all duration-200 shadow-sm"
+          >
+            <span>View Profile</span>
+            <ExternalLink size={12} />
+          </a>
+        </div>
+
+        {stats && (
+          <div className="justify-self-center flex flex-wrap items-center justify-start lg:justify-center gap-2 w-full lg:w-auto">
+            {stats.ranking !== null && (
               <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-900/80 border border-white/5">
                 <span className="text-zinc-400 text-[11px] font-mono">
-                  Solved
+                  Rank
                 </span>
-                <span className="text-white font-bold text-xs md:text-sm font-mono">
-                  {stats.totalSolved}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-950/25 border border-emerald-500/20">
-                <span className="text-emerald-400/90 text-[11px] font-mono">
-                  Easy
-                </span>
-                <span className="text-emerald-300 font-bold text-xs md:text-sm font-mono">
-                  {stats.easySolved}
+                <span className="text-zinc-200 font-medium text-xs md:text-sm font-mono">
+                  {typeof stats.ranking === "number"
+                    ? `#${stats.ranking.toLocaleString()}`
+                    : stats.ranking}
                 </span>
               </div>
-
-              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-950/25 border border-amber-500/20">
-                <span className="text-amber-400/90 text-[11px] font-mono">
-                  Medium
-                </span>
-                <span className="text-amber-300 font-bold text-xs md:text-sm font-mono">
-                  {stats.mediumSolved}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-rose-950/25 border border-rose-500/20">
-                <span className="text-rose-400/90 text-[11px] font-mono">
-                  Hard
-                </span>
-                <span className="text-rose-300 font-bold text-xs md:text-sm font-mono">
-                  {stats.hardSolved}
-                </span>
-              </div>
-
-              {stats.ranking !== null && (
-                <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-900/80 border border-white/5">
-                  <span className="text-zinc-400 text-[11px] font-mono">
-                    Rank
-                  </span>
-                  <span className="text-zinc-200 font-medium text-xs md:text-sm font-mono">
-                    {typeof stats.ranking === "number"
-                      ? `#${stats.ranking.toLocaleString()}`
-                      : stats.ranking}
-                  </span>
-                </div>
-              )}
-
-              {streak !== null && (
-                <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-orange-950/25 border border-orange-500/20">
-                  <span className="text-orange-400/90 text-[11px] font-mono">
-                    🔥 Streak
-                  </span>
-                  <span className="text-orange-300 font-bold text-xs md:text-sm font-mono">
-                    {streak} {streak === 1 ? "day" : "days"}
-                  </span>
-                </div>
-              )}
+            )}
+            
+            <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-900/80 border border-white/5">
+              <span className="text-zinc-400 text-[11px] font-mono">
+                Solved
+              </span>
+              <span className="text-white font-bold text-xs md:text-sm font-mono">
+                {stats.totalSolved}
+              </span>
             </div>
-          )}
+            
+            <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-950/25 border border-emerald-500/20">
+              <span className="text-emerald-400/90 text-[11px] font-mono">
+                Easy
+              </span>
+              <span className="text-emerald-300 font-bold text-xs md:text-sm font-mono">
+                {stats.easySolved}
+              </span>
+            </div>
 
-          <div className="hidden lg:flex justify-self-end">
-            <a
-              href={LEETCODE_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 border border-white/10 hover:border-amber-400/40 rounded-lg text-xs font-mono tracking-wider transition-all duration-200 shrink-0 shadow-sm"
-            >
-              <span>View Profile</span>
-              <ExternalLink size={12} />
-            </a>
+            <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-950/25 border border-amber-500/20">
+              <span className="text-amber-400/90 text-[11px] font-mono">
+                Medium
+              </span>
+              <span className="text-amber-300 font-bold text-xs md:text-sm font-mono">
+                {stats.mediumSolved}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-rose-950/25 border border-rose-500/20">
+              <span className="text-rose-400/90 text-[11px] font-mono">
+                Hard
+              </span>
+              <span className="text-rose-300 font-bold text-xs md:text-sm font-mono">
+                {stats.hardSolved}
+              </span>
+            </div>
+
+
+            {streak !== null && (
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-orange-950/25 border border-orange-500/20">
+                <span className="text-orange-400/90 text-[11px] font-mono">
+                  🔥 Streak
+                </span>
+                <span className="text-orange-300 font-bold text-xs md:text-sm font-mono">
+                  {streak} {streak === 1 ? "day" : "days"}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="hidden lg:flex justify-self-end">
+          <a
+            href={LEETCODE_PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 border border-white/10 hover:border-amber-400/40 rounded-lg text-xs font-mono tracking-wider transition-all duration-200 shrink-0 shadow-sm"
+          >
+            <span>View Profile</span>
+            <ExternalLink size={12} />
+          </a>
+        </div>
+      </div>
+
+      <div
+        className={`grid grid-cols-1 ${badges && badges.length > 0
+          ? "lg:grid-cols-[auto_1fr]"
+          : "grid-cols-1"
+          } gap-3.5 items-stretch`}
+      >
+        {/* Left: 365-day Contribution Heatmap */}
+        <div className="flex flex-col gap-2 min-w-0">
+          <div className="flex justify-between items-center text-[11px] font-mono text-zinc-400">
+            <span>
+              Activity · 365 days
+              {totalSubmissions > 0
+                ? ` · ${totalSubmissions.toLocaleString()} submissions`
+                : ""}
+            </span>
+
+            <div className="flex items-center gap-1.5 text-zinc-500 text-[10px]">
+              <span>Less</span>
+              <span className="w-2 h-2 rounded-[1px] bg-zinc-800/60 border border-white/[0.02]" />
+              <span className="w-2 h-2 rounded-[1px] bg-amber-900/60 border border-amber-900/10" />
+              <span className="w-2 h-2 rounded-[1px] bg-amber-700/60 border border-amber-700/10" />
+              <span className="w-2 h-2 rounded-[1px] bg-amber-500/80 border border-amber-500/10" />
+              <span className="w-2 h-2 rounded-[1px] bg-amber-300 border border-amber-300/10" />
+              <span>More</span>
+            </div>
+          </div>
+
+          <div
+            ref={scrollContainerRef}
+            className="w-full lg:w-fit max-w-full h-full bg-zinc-900/50 border border-white/5 rounded-lg p-2.5 sm:p-3 overflow-x-auto custom-scrollbar flex items-center justify-start"
+          >
+            {loading ? (
+              <div className="w-full flex flex-col items-center justify-center py-4 gap-2 animate-pulse">
+                <div className="h-3 bg-zinc-800 rounded w-3/4" />
+                <div className="h-3 bg-zinc-800 rounded w-1/2" />
+              </div>
+            ) : error || contributions.length === 0 ? (
+              <div className="w-full py-4 text-center text-xs font-mono text-zinc-500 flex flex-col items-center gap-1.5">
+                <span>
+                  Unable to load LeetCode activity.
+                </span>
+
+                <a
+                  href={LEETCODE_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-400 hover:underline inline-flex items-center gap-1"
+                >
+                  View profile on LeetCode
+                  <ExternalLink size={10} />
+                </a>
+              </div>
+            ) : (
+              <div className="grid grid-flow-col grid-rows-7 gap-[2px] sm:gap-[3px] select-none w-max">
+                {contributions.map((day) => (
+                  <ContributionCell
+                    key={day.date}
+                    date={day.date}
+                    count={day.count}
+                    level={day.level}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
-        <div
-          className={`grid grid-cols-1 ${badges && badges.length > 0
-            ? "lg:grid-cols-[auto_1fr]"
-            : "grid-cols-1"
-            } gap-3.5 items-stretch`}
-        >
-          {/* Left: 365-day Contribution Heatmap */}
-          <div className="flex flex-col gap-2 min-w-0">
-            <div className="flex justify-between items-center text-[11px] font-mono text-zinc-400">
-              <span>
-                Activity · 365 days
-                {totalSubmissions > 0
-                  ? ` · ${totalSubmissions.toLocaleString()} submissions`
-                  : ""}
-              </span>
-
-              <div className="flex items-center gap-1.5 text-zinc-500 text-[10px]">
-                <span>Less</span>
-                <span className="w-2 h-2 rounded-[1px] bg-zinc-800/60 border border-white/[0.02]" />
-                <span className="w-2 h-2 rounded-[1px] bg-amber-900/60 border border-amber-900/10" />
-                <span className="w-2 h-2 rounded-[1px] bg-amber-700/60 border border-amber-700/10" />
-                <span className="w-2 h-2 rounded-[1px] bg-amber-500/80 border border-amber-500/10" />
-                <span className="w-2 h-2 rounded-[1px] bg-amber-300 border border-amber-300/10" />
-                <span>More</span>
-              </div>
+        {/* Right: Badges */}
+        {badges && badges.length > 0 && (
+          <div className="flex flex-col gap-2 min-w-0 flex-1">
+            <div className="flex items-center text-[11px] font-mono text-zinc-400">
+              <span>Badges · {badges.length} earned</span>
             </div>
 
-            <div
-              ref={scrollContainerRef}
-              className="w-full lg:w-fit max-w-full h-full bg-zinc-900/50 border border-white/5 rounded-lg p-2.5 sm:p-3 overflow-x-auto custom-scrollbar flex items-center justify-start"
-            >
-              {loading ? (
-                <div className="w-full flex flex-col items-center justify-center py-4 gap-2 animate-pulse">
-                  <div className="h-3 bg-zinc-800 rounded w-3/4" />
-                  <div className="h-3 bg-zinc-800 rounded w-1/2" />
-                </div>
-              ) : error || contributions.length === 0 ? (
-                <div className="w-full py-4 text-center text-xs font-mono text-zinc-500 flex flex-col items-center gap-1.5">
-                  <span>
-                    Unable to load LeetCode activity.
-                  </span>
-
-                  <a
-                    href={LEETCODE_PROFILE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-amber-400 hover:underline inline-flex items-center gap-1"
-                  >
-                    View profile on LeetCode
-                    <ExternalLink size={10} />
-                  </a>
-                </div>
-              ) : (
-                <div className="grid grid-flow-col grid-rows-7 gap-[2px] sm:gap-[3px] select-none w-max">
-                  {contributions.map((day) => (
-                    <ContributionCell
-                      key={day.date}
-                      date={day.date}
-                      count={day.count}
-                      level={day.level}
+            <div className="w-full h-full min-h-[58px] bg-zinc-900/50 border border-white/5 rounded-lg p-2 sm:p-2.5 flex flex-wrap items-center gap-2">
+              {badges.map((badge, idx) => (
+                <div
+                  key={badge.id || badge.name || idx}
+                  title={badge.tooltip || badge.name}
+                  aria-label={badge.tooltip || badge.name}
+                  className="group relative w-12 h-12 flex items-center justify-center rounded-lg bg-zinc-900/80 hover:bg-zinc-800 border border-white/5 hover:border-amber-400/40 transition-all duration-200 cursor-pointer shadow-sm"
+                >
+                  {badge.icon ? (
+                    <img
+                      src={badge.icon}
+                      alt={badge.name}
+                      className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
                     />
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
+                  ) : (
+                    <span className="text-lg">🏆</span>
+                  )}
 
-          {/* Right: Badges */}
-          {badges && badges.length > 0 && (
-            <div className="flex flex-col gap-2 min-w-0 flex-1">
-              <div className="flex items-center text-[11px] font-mono text-zinc-400">
-                <span>Badges · {badges.length} earned</span>
-              </div>
-
-              <div className="w-full h-full min-h-[58px] bg-zinc-900/50 border border-white/5 rounded-lg p-2 sm:p-2.5 flex flex-wrap items-center gap-2">
-                {badges.map((badge, idx) => (
+                  {/* Badge name appears ONLY on hover */}
                   <div
-                    key={badge.id || badge.name || idx}
-                    title={badge.tooltip || badge.name}
-                    aria-label={badge.tooltip || badge.name}
-                    className="group relative w-12 h-12 flex items-center justify-center rounded-lg bg-zinc-900/80 hover:bg-zinc-800 border border-white/5 hover:border-amber-400/40 transition-all duration-200 cursor-pointer shadow-sm"
-                  >
-                    {badge.icon ? (
-                      <img
-                        src={badge.icon}
-                        alt={badge.name}
-                        className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
-                    ) : (
-                      <span className="text-lg">🏆</span>
-                    )}
-
-                    {/* Badge name appears ONLY on hover */}
-                    <div
-                      className="
+                    className="
                         pointer-events-none
                         absolute
                         -top-9
@@ -636,18 +632,18 @@ const LeetcodeContributions = () => {
                         border-white/10
                         shadow-lg
                       "
-                    >
-                      {badge.name}
-                    </div>
+                  >
+                    {badge.name}
                   </div>
-                ))}
-                
-              </div>
+                </div>
+              ))}
+
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
+    </div >
   );
 };
 
