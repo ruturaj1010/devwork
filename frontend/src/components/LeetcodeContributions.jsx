@@ -76,6 +76,100 @@ const formatDate = (date) => {
   return `${year}-${month}-${day}`;
 };
 
+const calculateCurrentStreak = (dateCounts, fallbackStreak) => {
+  if (!dateCounts || typeof dateCounts !== "object") {
+    return Number.isFinite(Number(fallbackStreak)) ? Number(fallbackStreak) : 0;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const todayStr = formatDate(today);
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = formatDate(yesterday);
+
+  let cursorDate = null;
+  if ((dateCounts[todayStr] || 0) > 0) {
+    cursorDate = new Date(today);
+  } else if ((dateCounts[yesterdayStr] || 0) > 0) {
+    cursorDate = new Date(yesterday);
+  } else {
+    // Check UTC date boundaries if local timezone differs from UTC
+    const utcNow = new Date();
+    const utcTodayStr = utcNow.toISOString().slice(0, 10);
+    utcNow.setUTCDate(utcNow.getUTCDate() - 1);
+    const utcYesterdayStr = utcNow.toISOString().slice(0, 10);
+
+    if ((dateCounts[utcTodayStr] || 0) > 0) {
+      cursorDate = new Date(today);
+    } else if ((dateCounts[utcYesterdayStr] || 0) > 0) {
+      cursorDate = new Date(yesterday);
+    }
+  }
+
+  if (!cursorDate) {
+    return Number.isFinite(Number(fallbackStreak)) ? Number(fallbackStreak) : 0;
+  }
+
+  let streak = 0;
+  while (cursorDate) {
+    const dStr = formatDate(cursorDate);
+    if ((dateCounts[dStr] || 0) > 0) {
+      streak++;
+      cursorDate.setDate(cursorDate.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+
+  return streak > 0
+    ? streak
+    : Number.isFinite(Number(fallbackStreak))
+      ? Number(fallbackStreak)
+      : 0;
+};
+
+const extractBadges = (badgesResponse) => {
+  if (!badgesResponse) return [];
+
+  const rawBadges =
+    badgesResponse?.badges ||
+    badgesResponse?.data?.badges ||
+    badgesResponse?.user?.badges ||
+    badgesResponse?.data?.user?.badges ||
+    (Array.isArray(badgesResponse) ? badgesResponse : []);
+
+  if (!Array.isArray(rawBadges)) return [];
+
+  return rawBadges
+    .map((item, index) => {
+      if (!item || typeof item !== "object") return null;
+
+      const name = item.name || "";
+      const displayName = item.displayName || "";
+      const shortName = item.shortName || "";
+      const hoverText = item.hoverText || "";
+      let icon = item.icon || item.medal?.config?.iconGif || "";
+
+      if (icon && icon.startsWith("/")) {
+        icon = `https://leetcode.com${icon}`;
+      }
+
+      const label =
+        displayName || shortName || name || hoverText || `Badge ${index + 1}`;
+      const tooltip = hoverText || displayName || shortName || name || label;
+
+      return {
+        id: item.id || `${name}-${index}`,
+        name: label,
+        tooltip,
+        icon,
+      };
+    })
+    .filter(Boolean);
+};
+
 const processCalendarData = (calendarResponse) => {
   const calendar =
     calendarResponse?.calendar ||
@@ -84,12 +178,20 @@ const processCalendarData = (calendarResponse) => {
     calendarResponse?.data?.userCalendar ||
     calendarResponse;
 
-  const rawCalendar =
+  let rawCalendar =
     calendar?.submissionCalendar ||
     calendar?.dailyContributions ||
     calendarResponse?.submissionCalendar ||
     calendarResponse?.data?.submissionCalendar ||
     {};
+
+  if (typeof rawCalendar === "string") {
+    try {
+      rawCalendar = JSON.parse(rawCalendar);
+    } catch {
+      rawCalendar = {};
+    }
+  }
 
   const dateCounts = {};
 
@@ -153,9 +255,14 @@ const processCalendarData = (calendarResponse) => {
     cursor.setDate(cursor.getDate() + 1);
   }
 
+  const fallbackStreak =
+    calendarResponse?.streak ?? calendar?.streak ?? null;
+  const currentStreak = calculateCurrentStreak(dateCounts, fallbackStreak);
+
   return {
     days,
     total,
+    currentStreak,
   };
 };
 
@@ -170,6 +277,7 @@ const extractStats = (profileResponse) => {
     profile?.submitStatsGlobal ||
     profile?.submitStats ||
     profile?.submissionStats ||
+    profileResponse?.submitStats ||
     {};
 
   const submissions =
@@ -209,16 +317,21 @@ const extractStats = (profileResponse) => {
     ) ||
     easySolved + mediumSolved + hardSolved;
 
+  const ranking =
+    profile?.profile?.ranking ??
+    profileResponse?.profile?.ranking ??
+    profile?.ranking ??
+    profile?.globalRanking ??
+    profile?.rank ??
+    profileResponse?.ranking ??
+    null;
+
   return {
     totalSolved: allSolved,
     easySolved,
     mediumSolved,
     hardSolved,
-    ranking:
-      profile?.ranking ??
-      profile?.globalRanking ??
-      profile?.rank ??
-      null,
+    ranking,
   };
 };
 
@@ -226,6 +339,8 @@ const LeetcodeContributions = () => {
   const [contributions, setContributions] = useState([]);
   const [totalSubmissions, setTotalSubmissions] = useState(0);
   const [stats, setStats] = useState(null);
+  const [streak, setStreak] = useState(null);
+  const [badges, setBadges] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -246,7 +361,7 @@ const LeetcodeContributions = () => {
       setError(false);
 
       try {
-        const [profileResponse, calendarResponse] =
+        const [profileResponse, calendarResponse, badgesResponse] =
           await Promise.all([
             fetchWithTimeout(
               `${API_BASE_URL}/user/${LEETCODE_USERNAME}`
@@ -254,17 +369,25 @@ const LeetcodeContributions = () => {
             fetchWithTimeout(
               `${API_BASE_URL}/user/${LEETCODE_USERNAME}/calendar`
             ),
+            fetchWithTimeout(
+              `${API_BASE_URL}/user/${LEETCODE_USERNAME}/badges`
+            ).catch((badgeErr) => {
+              console.warn("LeetCode Badges API error:", badgeErr);
+              return null;
+            }),
           ]);
 
         if (!mounted) return;
 
         const parsedStats = extractStats(profileResponse);
-        const parsedCalendar =
-          processCalendarData(calendarResponse);
+        const parsedCalendar = processCalendarData(calendarResponse);
+        const parsedBadges = extractBadges(badgesResponse);
 
         setStats(parsedStats);
         setContributions(parsedCalendar.days);
         setTotalSubmissions(parsedCalendar.total);
+        setStreak(parsedCalendar.currentStreak);
+        setBadges(parsedBadges);
       } catch (err) {
         console.error("LeetCode API error:", err);
 
@@ -365,6 +488,17 @@ const LeetcodeContributions = () => {
                   </span>
                 </div>
               )}
+
+              {streak !== null && (
+                <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-orange-950/25 border border-orange-500/20">
+                  <span className="text-orange-400/90 text-[11px] font-mono">
+                    🔥 Streak
+                  </span>
+                  <span className="text-orange-300 font-bold text-xs md:text-sm font-mono">
+                    {streak} {streak === 1 ? "day" : "days"}
+                  </span>
+                </div>
+              )}
             </div>
           )}
 
@@ -381,64 +515,136 @@ const LeetcodeContributions = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <div className="flex justify-between items-center text-[11px] font-mono text-zinc-400">
-            <span>
-              Activity · 365 days
-              {totalSubmissions > 0
-                ? ` · ${totalSubmissions.toLocaleString()} submissions`
-                : ""}
-            </span>
+        <div
+          className={`grid grid-cols-1 ${badges && badges.length > 0
+            ? "lg:grid-cols-[auto_1fr]"
+            : "grid-cols-1"
+            } gap-3.5 items-stretch`}
+        >
+          {/* Left: 365-day Contribution Heatmap */}
+          <div className="flex flex-col gap-2 min-w-0">
+            <div className="flex justify-between items-center text-[11px] font-mono text-zinc-400">
+              <span>
+                Activity · 365 days
+                {totalSubmissions > 0
+                  ? ` · ${totalSubmissions.toLocaleString()} submissions`
+                  : ""}
+              </span>
 
-            <div className="flex items-center gap-1.5 text-zinc-500 text-[10px]">
-              <span>Less</span>
-              <span className="w-2 h-2 rounded-[1px] bg-zinc-800/60 border border-white/[0.02]" />
-              <span className="w-2 h-2 rounded-[1px] bg-amber-900/60 border border-amber-900/10" />
-              <span className="w-2 h-2 rounded-[1px] bg-amber-700/60 border border-amber-700/10" />
-              <span className="w-2 h-2 rounded-[1px] bg-amber-500/80 border border-amber-500/10" />
-              <span className="w-2 h-2 rounded-[1px] bg-amber-300 border border-amber-300/10" />
-              <span>More</span>
+              <div className="flex items-center gap-1.5 text-zinc-500 text-[10px]">
+                <span>Less</span>
+                <span className="w-2 h-2 rounded-[1px] bg-zinc-800/60 border border-white/[0.02]" />
+                <span className="w-2 h-2 rounded-[1px] bg-amber-900/60 border border-amber-900/10" />
+                <span className="w-2 h-2 rounded-[1px] bg-amber-700/60 border border-amber-700/10" />
+                <span className="w-2 h-2 rounded-[1px] bg-amber-500/80 border border-amber-500/10" />
+                <span className="w-2 h-2 rounded-[1px] bg-amber-300 border border-amber-300/10" />
+                <span>More</span>
+              </div>
+            </div>
+
+            <div
+              ref={scrollContainerRef}
+              className="w-full lg:w-fit max-w-full h-full bg-zinc-900/50 border border-white/5 rounded-lg p-2.5 sm:p-3 overflow-x-auto custom-scrollbar flex items-center justify-start"
+            >
+              {loading ? (
+                <div className="w-full flex flex-col items-center justify-center py-4 gap-2 animate-pulse">
+                  <div className="h-3 bg-zinc-800 rounded w-3/4" />
+                  <div className="h-3 bg-zinc-800 rounded w-1/2" />
+                </div>
+              ) : error || contributions.length === 0 ? (
+                <div className="w-full py-4 text-center text-xs font-mono text-zinc-500 flex flex-col items-center gap-1.5">
+                  <span>
+                    Unable to load LeetCode activity.
+                  </span>
+
+                  <a
+                    href={LEETCODE_PROFILE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-amber-400 hover:underline inline-flex items-center gap-1"
+                  >
+                    View profile on LeetCode
+                    <ExternalLink size={10} />
+                  </a>
+                </div>
+              ) : (
+                <div className="grid grid-flow-col grid-rows-7 gap-[2px] sm:gap-[3px] select-none w-max">
+                  {contributions.map((day) => (
+                    <ContributionCell
+                      key={day.date}
+                      date={day.date}
+                      count={day.count}
+                      level={day.level}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
-          <div
-            ref={scrollContainerRef}
-            className="w-full bg-zinc-900/50 border border-white/5 rounded-lg p-2.5 sm:p-3 overflow-x-auto custom-scrollbar flex items-center justify-start"
-          >
-            {loading ? (
-              <div className="w-full flex flex-col items-center justify-center py-4 gap-2 animate-pulse">
-                <div className="h-3 bg-zinc-800 rounded w-3/4" />
-                <div className="h-3 bg-zinc-800 rounded w-1/2" />
+          {/* Right: Badges */}
+          {badges && badges.length > 0 && (
+            <div className="flex flex-col gap-2 min-w-0 flex-1">
+              <div className="flex items-center text-[11px] font-mono text-zinc-400">
+                <span>Badges · {badges.length} earned</span>
               </div>
-            ) : error || contributions.length === 0 ? (
-              <div className="w-full py-4 text-center text-xs font-mono text-zinc-500 flex flex-col items-center gap-1.5">
-                <span>
-                  Unable to load LeetCode activity.
-                </span>
 
-                <a
-                  href={LEETCODE_PROFILE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-400 hover:underline inline-flex items-center gap-1"
-                >
-                  View profile on LeetCode
-                  <ExternalLink size={10} />
-                </a>
-              </div>
-            ) : (
-              <div className="grid grid-flow-col grid-rows-7 gap-[2px] sm:gap-[3px] select-none w-max">
-                {contributions.map((day) => (
-                  <ContributionCell
-                    key={day.date}
-                    date={day.date}
-                    count={day.count}
-                    level={day.level}
-                  />
+              <div className="w-full h-full min-h-[58px] bg-zinc-900/50 border border-white/5 rounded-lg p-2 sm:p-2.5 flex flex-wrap items-center gap-2">
+                {badges.map((badge, idx) => (
+                  <div
+                    key={badge.id || badge.name || idx}
+                    title={badge.tooltip || badge.name}
+                    aria-label={badge.tooltip || badge.name}
+                    className="group relative w-12 h-12 flex items-center justify-center rounded-lg bg-zinc-900/80 hover:bg-zinc-800 border border-white/5 hover:border-amber-400/40 transition-all duration-200 cursor-pointer shadow-sm"
+                  >
+                    {badge.icon ? (
+                      <img
+                        src={badge.icon}
+                        alt={badge.name}
+                        className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    ) : (
+                      <span className="text-lg">🏆</span>
+                    )}
+
+                    {/* Badge name appears ONLY on hover */}
+                    <div
+                      className="
+                        pointer-events-none
+                        absolute
+                        -top-9
+                        left-1/2
+                        -translate-x-1/2
+                        opacity-0
+                        group-hover:opacity-100
+                        transition-opacity
+                        duration-150
+                        z-20
+                        whitespace-nowrap
+                        bg-zinc-950
+                        text-zinc-200
+                        text-[11px]
+                        font-mono
+                        px-2
+                        py-1
+                        rounded
+                        border
+                        border-white/10
+                        shadow-lg
+                      "
+                    >
+                      {badge.name}
+                    </div>
+                  </div>
                 ))}
+                
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
